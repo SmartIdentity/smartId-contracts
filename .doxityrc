@@ -1,0 +1,7 @@
+{
+  "target": "scripts/doxity",
+  "src": "contracts/*",
+  "dir": "pages/",
+  "source": "https://github.com/DigixGlobal/doxity-gatsby-starter-project.git",
+  "out": "docs"
+}
