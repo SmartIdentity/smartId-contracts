@@ -1,0 +1,32 @@
+{
+  "name": "smartidentity",
+  "version": "0.0.3",
+  "description": "Smart Identity sample contracts & test suite",
+  "main": "truffle",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "ethereumjs-testrpc": "^3.0.0",
+    "truffle": "^2.1.0"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:SmartIdentity/smartId-contracts.git"
+  },
+  "keywords": [
+    "truffle",
+    "ethereum",
+    "solidity",
+    "jasmine",
+    "mocha"
+  ],
+  "author": "Deloitte UK Blockchain Labs",
+  "license": "Apache-2.0",
+  "homepage": "https://www.deloitte.co.uk/smartid"
+}

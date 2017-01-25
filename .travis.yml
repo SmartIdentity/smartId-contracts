@@ -1,0 +1,28 @@
+language: node_js
+
+sudo: required
+
+node_js:
+  - "6.9"
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.9
+      - libstdc++-4.9-dev
+      - openssl
+env:
+  - CXX=g++-4.9
+
+before_install:
+  - npm install -g npm@latest
+  - npm install -g ethereumjs-testrpc truffle
+
+install:
+  - npm install 
+
+script:
+  - testrpc &
+  - truffle test
