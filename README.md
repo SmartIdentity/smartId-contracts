@@ -83,7 +83,7 @@ To offer global utility, Smart Identity should:
 
 ## Community / Forum / Contact
 
-* [Gitter](https://gitter.im/ethereum/solidity) for tech issues/discussion
+* [Solidity Gitter Channel](https://gitter.im/ethereum/solidity) for tech issues/discussion around solidity.
 * [LinkedIn Group](https://www.linkedin.com/groups/8585249) for professional chat on use cases and/or anything else.
 * [Deloitte Smart ID website](http://www.deloitte.co.uk/smartid) for Deloitte announcements relating to Smart ID
 * Or [contact a member of the Deloitte Smart ID team via email](blockchain@deloitte.co.uk)
