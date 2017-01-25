@@ -24,7 +24,7 @@ Attributes and endorsements are formed of field sets, merkle-root hashes are use
 Smart ID is a platform that uses Ethereum and solidity smart contracts as a framework for its core protocol. A spring boot java application has been implemented to showcase how the protocol works and acts as an interface to the blockchain. Initial smart contracts written have been written in Solidity to the Solidity 0.4 specification. [http://solidity.readthedocs.io/en/develop/](http://solidity.readthedocs.io/en/develop/).
 
 ## Prerequisites
-  * [Node.js 6.9.1+](https://nodejs.org)
+  * [Node.js 6.9+](https://nodejs.org)
   * [Python 2.7](https://www.python.org/download/releases/2.7/)
   * Command Line Tools
    * **Mac OS X**: [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (or **OS X 10.9+**: `xcode-select --install`) and `brew install libgcrypt`
