@@ -36,7 +36,10 @@ Smart ID is a platform that uses Ethereum and solidity smart contracts as a fram
 
 ```bash
 # Get the latest snapshot
+#https
 git clone https://github.com/SmartIdentity/smartId-contracts.git
+#ssh
+git clone git@github.com:SmartIdentity/smartId-contracts.git
 
 # Change directory
 cd openprep
