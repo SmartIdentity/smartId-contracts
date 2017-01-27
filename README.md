@@ -1,6 +1,6 @@
 # Smart Identity
 
-[![Build Status](https://travis-ci.org/SmartIdentity/smartId-contracts.svg?branch=master)](https://travis-ci.org/SmartIdentity/smartId-contracts)
+[![Build Status](https://travis-ci.org/SmartIdentity/smartId-contracts.svg?branch=Travis-CI)](https://travis-ci.org/SmartIdentity/smartId-contracts)
 
 ## Table of Contents
 
