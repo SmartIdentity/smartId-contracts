@@ -44,7 +44,7 @@ git clone https://github.com/SmartIdentity/smartId-contracts.git
 git clone git@github.com:SmartIdentity/smartId-contracts.git
 
 # Change directory
-cd openprep
+cd smartId-contracts/
 
 # Install NPM dependencies
 npm install
