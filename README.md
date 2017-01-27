@@ -1,5 +1,7 @@
 # Smart Identity
 
+[![Build Status](https://travis-ci.org/SmartIdentity/smartId-contracts.svg?branch=develop)](https://travis-ci.org/SmartIdentity/smartId-contracts)
+
 ## Table of Contents
 
 - [What is Smart Identity?](#what-is-smart-identity)
@@ -42,7 +44,7 @@ git clone https://github.com/SmartIdentity/smartId-contracts.git
 git clone git@github.com:SmartIdentity/smartId-contracts.git
 
 # Change directory
-cd openprep
+cd smartId-contracts/
 
 # Install NPM dependencies
 npm install
