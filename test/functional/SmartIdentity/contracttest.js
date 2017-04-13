@@ -3,6 +3,8 @@
   * that involve altering the ownership of the contract.
   */
 
+var SmartIdentity = artifacts.require("SmartIdentity");
+
 contract('SmartIdentity', function(accounts) {
 
     var smartIdentity,

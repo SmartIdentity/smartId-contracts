@@ -3,6 +3,8 @@
   * that alter the signing public key.
   */
 
+var SmartIdentity = artifacts.require("SmartIdentity");
+
 contract('SmartIdentity', function(accounts) {
 
     var smartIdentity,

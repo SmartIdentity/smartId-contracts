@@ -11,10 +11,6 @@ module.exports = {
     ],
     "images/": "images/"
   }),
-  rpc: {
-    host: "localhost",
-    port: 8545
-  },
   networks: {
     development: {
       host: "localhost",

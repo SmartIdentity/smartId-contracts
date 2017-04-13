@@ -7,6 +7,8 @@
   *
   */
 
+var SmartIdentity = artifacts.require("SmartIdentity");
+
 contract('SmartIdentity', function(accounts) {
 
     var bob = {},

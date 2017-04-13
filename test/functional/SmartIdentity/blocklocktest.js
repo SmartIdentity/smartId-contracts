@@ -3,6 +3,8 @@
   * SmartIdentity.sol.
   */
 
+var SmartIdentity = artifacts.require("SmartIdentity");
+
 contract('SmartIdentity', function(accounts) {
 
     var smartIdentity,
