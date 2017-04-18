@@ -44,7 +44,7 @@ contract('SmartIdentity', function(accounts) {
             return smartIdentity.addAttribute(attributeHash1, {from: owner})
             .then(function(response) {
                 assert.isOk(response, "Attribute addition failed");
-                var addAttributeStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+                var addAttributeStatus = response.logs[0].args.status;
                 assert.equal(4, addAttributeStatus, "Transaction returned unexpected status");
             });
         });
@@ -161,7 +161,7 @@ contract('SmartIdentity', function(accounts) {
         it("will remove an attribute as an owner, and succeed", function() {
             return smartIdentity.removeAttribute(attributeHash1, {from: owner})
             .then(function(response) {
-                var removeAttributeStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+                var removeAttributeStatus = response.logs[0].args.status;
                 assert.equal(3, removeAttributeStatus, "Transaction returned unexpected status");
                 assert.isOk(response, "Attribute removal failed");
             });
@@ -175,9 +175,9 @@ contract('SmartIdentity', function(accounts) {
         });
 
         it("will add a new attribute as the owner, and succeed", function() {
-            smartIdentity.addAttribute(attributeHash4, {from: owner})
+            return smartIdentity.addAttribute(attributeHash4, {from: owner})
             .then(function(response) {
-                var addAttributeStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+                var addAttributeStatus = response.logs[0].args.status;
                 assert.equal(4, addAttributeStatus, "Transaction returned unexpected status");
                 assert.isOk(response, "Attribute addition failed");
             });
@@ -195,10 +195,10 @@ contract('SmartIdentity', function(accounts) {
             var newAttributeHash = "0x154f7ce000000000000000000000000000000000000000000000000000000000";
             return smartIdentity.updateAttribute(oldAttributeHash, newAttributeHash, {from: owner})
             .then(function(response) {
-                var debugStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
-                var removeAttributeStatus = web3.eth.getTransactionReceipt(response).logs[1].data[65];
-                var addAttributeStatus = web3.eth.getTransactionReceipt(response).logs[2].data[65];
-                var updateAttributeStatus = web3.eth.getTransactionReceipt(response).logs[3].data[65];
+                var debugStatus = response.logs[0].args.status;
+                var removeAttributeStatus = response.logs[1].args.status;
+                var addAttributeStatus = response.logs[2].args.status;
+                var updateAttributeStatus = response.logs[3].args.status;
                 assert.equal(5, debugStatus, "Transaction returned unexpected status");
                 assert.equal(3, removeAttributeStatus, "Transaction returned unexpected status");
                 assert.equal(4, addAttributeStatus, "Transaction returned unexpected status");

@@ -36,7 +36,7 @@ contract('SmartIdentity', function(accounts) {
         it("will set signing public key as the owner", function() {
             return smartIdentity.setSigningPublicKey(publicSigningKey, {from: owner})
             .then(function(response) {
-                var newSigningKeyStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+                var newSigningKeyStatus = response.logs[0].args.status;
                 assert.equal(3, newSigningKeyStatus, "Transaction returned unexpected status");
                 assert.isOk(response, "Attribute addition failed");
             });
@@ -52,7 +52,7 @@ contract('SmartIdentity', function(accounts) {
         it("will update the signing public key as the owner", function() {
             return smartIdentity.setSigningPublicKey(newPublicSigningKey, {from: owner})
             .then(function(response) {
-                var newSigningKeyStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+                var newSigningKeyStatus = response.logs[0].args.status;
                 assert.equal(3, newSigningKeyStatus, "Transaction returned unexpected status");
                 assert.isOk(response, "Attribute addition failed");
             });

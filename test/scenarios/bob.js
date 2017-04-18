@@ -35,22 +35,21 @@ contract('SmartIdentity', function(accounts) {
 
     describe("Scenario: Bob has a current account with his bank, but needs to supply additional information to apply for a mortgage.", function() {
 
-        it("Should create an identity for Bob so that he can create employement status attributes", function(done) {
+        it("Should create an identity for Bob so that he can create employement status attributes", function() {
+          var encryptionKey = "test encryption key";
+
             return SmartIdentity.new({from: bob.address})
             .then(function(data) {
                 bob.identity = data.address;
                 assert.isOk(data, "Bob's Identity failed to be created");
-
-                var encryptionKey = "test encryption key";
-
-                data.setEncryptionPublicKey(encryptionKey, {from: bob.address})
-                .then(function() {
-                    SmartIdentity.at(bob.identity).encryptionPublicKey.call()
-                    .then(function(returnedEncryptionKey) {
-                        assert.equal(encryptionKey, returnedEncryptionKey, "failed to add key");
-                    });
-                }).then(done).catch(done);
-            });
+                return data.setEncryptionPublicKey(encryptionKey, {from: bob.address})
+            }).then(function() {
+                SmartIdentity.at(bob.identity).then(function(identity){
+                    return identity.encryptionPublicKey.call();
+                }).then(function(returnedEncryptionKey) {
+                    assert.equal(encryptionKey, returnedEncryptionKey, "failed to add key");
+                })
+            })
         });
 
         it("Should create an identity for Bob's Employer so they can endorse his employment status", function() {

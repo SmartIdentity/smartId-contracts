@@ -29,34 +29,29 @@ contract('SmartIdentity', function(accounts) {
 
     describe("Blocklock tests", function() {
 
-        it("will create a new user and immediately set a new owner successfully", function(done) {
-            SmartIdentity.new({from: owner})
-            .then(function(identity) {
-                identity.setOwner(thirdparty, {from: override})
-                .then(function(response) {
-                    var newOwnerStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
-                    assert.equal(3, newOwnerStatus, "Transaction returned unexpected status");
-                    assert.isOk(response, "Setting new owner failed");
-                    done();
-                });
-            });
-        });
-
-        it("will set thirdparty as the new owner by an override user", function(done) {
-            smartIdentity.setOwner(thirdparty, {from: override})
-            .then(function(response) {
-                var newOwnerStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+        it("will create a new user and immediately set a new owner successfully", function() {
+            return SmartIdentity.new({from: owner}).then(function(identity) {
+                return identity.setOwner(thirdparty, {from: override})
+            }).then(function(response) {
+                var newOwnerStatus = response.logs[0].args.status;
                 assert.equal(3, newOwnerStatus, "Transaction returned unexpected status");
                 assert.isOk(response, "Setting new owner failed");
-                done();
             });
         });
 
-        it("will invoke the blocklock function when repeatedly setting a new owner as an override user", function(done) {
-            smartIdentity.setOwner(thirdparty, {from: override})
-            .catch(function(error) {
+        it("will set thirdparty as the new owner by an override user", function() {
+            return smartIdentity.setOwner(thirdparty, {from: override}).then(function(response) {
+                var newOwnerStatus = response.logs[0].args.status;
+                assert.equal(3, newOwnerStatus, "Transaction returned unexpected status");
+                assert.isOk(response, "Setting new owner failed");
+            });
+        });
+
+        it("will invoke the blocklock function when repeatedly setting a new owner as an override user", function() {
+            return smartIdentity.setOwner(thirdparty, {from: override}).then(function(){
+                assert.isOk(error, "Expected error has not been thrown");
+            }).catch(function(error) {
                 assert.isOk(error, "Expected error has not been caught");
-                done();
             });
         });
 
@@ -67,21 +62,18 @@ contract('SmartIdentity', function(accounts) {
             });
         }
 
-        it("will set the override to a thirdparty owner", function(done) {
-            smartIdentity.setOverride(accounts[3], {from: thirdparty})
-            .then(function(response) {
-                var newOverrideStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+        it("will set the override to a thirdparty owner", function() {
+            return smartIdentity.setOverride(accounts[3], {from: thirdparty}).then(function(response) {
+                var newOverrideStatus = response.logs[0].args.status;
                 assert.equal(3, newOverrideStatus, "Transaction returned unexpected status");
                 assert.isOk(response, "Setting override failed");
-                done();
             });
         });
 
-        it("will invoke the blocklock function when repeatedly setting a new owner as an override user", function(done) {
+        it("will invoke the blocklock function when repeatedly setting a new owner as an override user", function() {
             smartIdentity.setOwner(thirdparty, {from: override})
             .catch(function(error) {
                 assert.isOk(error, "Expected error has not been caught");
-                done();
             });
         });
 
@@ -95,7 +87,7 @@ contract('SmartIdentity', function(accounts) {
         it("will set the new owner back to 'owner' as the new override user", function(done) {
             smartIdentity.setOwner(owner, {from: accounts[3]})
             .then(function(response) {
-                var newOwnerStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+                var newOwnerStatus = response.logs[0].args.status;
                 assert.equal(3, newOwnerStatus, "Transaction returned unexpected status");
                 assert.isOk(response, "Setting new owner failed");
                 done();
