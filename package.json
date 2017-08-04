@@ -7,8 +7,8 @@
     "test": "test"
   },
   "dependencies": {
-    "ethereumjs-testrpc": "^3.0.0",
-    "truffle": "^2.1.0",
+    "ethereumjs-testrpc": "^4.0.1",
+    "truffle": "^3.4.7",
     "truffle-default-builder": "^2.0.0"
   },
   "devDependencies": {},
