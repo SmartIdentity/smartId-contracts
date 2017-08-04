@@ -7,6 +7,8 @@
  *
  */
 
+var SmartIdentity = artifacts.require("SmartIdentity");
+
 contract('SmartIdentity', function(accounts) {
 
     var alice = {},
@@ -33,23 +35,22 @@ contract('SmartIdentity', function(accounts) {
 
     describe("Scenario: Alice has a current account with her bank, but wants to open an account for her business.", function() {
 
-        it("Should create an identity for Alice so that she can create KYC attributes", function(done) {
+        it("Should create an identity for Alice so that she can create KYC attributes", function() {
+            var encryptionKey = "test encryption key";
             return SmartIdentity.new({from: alice.address})
             .then(function(data) {
                 alice.identity = data.address;
                 assert.isOk(data, "Alice's Identity failed to be created");
 
-                var encryptionKey = "test encryption key";
-
-                data.setEncryptionPublicKey(encryptionKey, {from: alice.address})
-                .then(function() {
-                    SmartIdentity.at(alice.identity).encryptionPublicKey.call()
-                    .then(function(returnedEncryptionKey) {
+                return data.setEncryptionPublicKey(encryptionKey, {from: alice.address})
+            }).then(function() {
+                    SmartIdentity.at(alice.identity).then(function(identity){
+                      return identity.encryptionPublicKey.call();
+                    }).then(function(returnedEncryptionKey) {
                         assert.equal(encryptionKey, returnedEncryptionKey, "failed to add key");
                     });
-                }).then(done).catch(done);
+                });
             });
-        });
 
         it("Should create an identity for Alice's Retail Bank so they can endorse her KYC checks", function() {
             return SmartIdentity.new({from: retailBank.address})
