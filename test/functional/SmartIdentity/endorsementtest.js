@@ -14,7 +14,8 @@ contract('SmartIdentity', function(accounts) {
         attributeHash1,
         attributeHash2,
         attributeHash3,
-        endorsementHash;
+        endorsementHash,
+        endorsementHash2;
 
     before("Setup the Smart Identity contract and hydrate the required variables", function(done) {
         owner = accounts[0];
