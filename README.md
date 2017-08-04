@@ -98,7 +98,7 @@ The Smart Identity construct uses an attribute-endorsement model enabled by the 
 
 #### Smart Contracts
 
-#####Smart IDentity.sol
+##### Smart IDentity.sol
 
 This is the Smart Identity contract as used by the Smart Identity instance.  It describes the core functionality required as part of a Smart Identity contracts with encryption keys, attributes & endorsements. 
 
