@@ -3,6 +3,8 @@
   * that alter the encryption public key.
   */
 
+var SmartIdentity = artifacts.require("SmartIdentity");
+
 contract('SmartIdentity', function(accounts) {
 
     var smartIdentity,
@@ -34,7 +36,7 @@ contract('SmartIdentity', function(accounts) {
         it("will set encryption public key as the owner", function() {
             return smartIdentity.setEncryptionPublicKey(publicEncryptionKey, {from: owner})
             .then(function(response) {
-                var newEncryptKeyStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+                var newEncryptKeyStatus = response.logs[0].args.status;
                 assert.equal(3, newEncryptKeyStatus, "Transaction returned unexpected status");
                 assert.isOk(response, "Attribute addition failed");
             });
@@ -50,7 +52,7 @@ contract('SmartIdentity', function(accounts) {
         it("will update the encryption public key as the owner", function() {
             return smartIdentity.setEncryptionPublicKey(newPublicEncryptionKey, {from: owner})
             .then(function(response) {
-                var newEncryptKeyStatus = web3.eth.getTransactionReceipt(response).logs[0].data[65];
+                var newEncryptKeyStatus = response.logs[0].args.status;
                 assert.equal(3, newEncryptKeyStatus, "Transaction returned unexpected status");
                 assert.isOk(response, "Attribute addition failed");
             });
