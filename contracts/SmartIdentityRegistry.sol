@@ -42,9 +42,9 @@ contract SmartIdentityRegistry {
      */
     modifier onlyBy(address _account) {
         if (msg.sender != _account) {
-            throw;
-            _;
+            revert();
         }
+        _;
     }
 
     /**
@@ -90,7 +90,7 @@ contract SmartIdentityRegistry {
                 }
             }
         } else {
-            throw;
+            revert();
         }
     }
 
@@ -109,7 +109,7 @@ contract SmartIdentityRegistry {
             return true;
         }
         if (sicontracts[_contractHash].status == REJECTED) {
-            throw;
+            revert();
         } else {
             return false;
         }
@@ -136,7 +136,7 @@ contract SmartIdentityRegistry {
     /**
      * modifier checkIdentity(address identity, address registry) return (bool) {
      *  if ( registry.isValidContract(identity) != 1 ) {
-     *    throw;
+     *    revert();
      *    _;
      *  }
      * }
