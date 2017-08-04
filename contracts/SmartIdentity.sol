@@ -37,7 +37,7 @@ contract SmartIdentity {
      */
     modifier onlyBy(address _account) {
         if (msg.sender != _account) {
-            throw;
+            revert();
         }
         _;
     }
@@ -50,7 +50,7 @@ contract SmartIdentity {
      */
     modifier checkBlockLock() {
         if (blocklock + BLOCK_HEIGHT > block.number) {
-            throw;
+            revert();
         }
         _;
     }
@@ -155,7 +155,7 @@ contract SmartIdentity {
         var attribute = attributes[_hash];
         if (attribute.hash == _hash) {
             sendEvent(SIG_CHANGE_EVENT, "A hash exists for the attribute");
-            throw;
+            revert();
         }
         attribute.hash = _hash;
         sendEvent(INFO_EVENT, "Attribute has been added");
@@ -183,7 +183,7 @@ contract SmartIdentity {
         var attribute = attributes[_hash];
         if (attribute.hash != _hash) {
             sendEvent(WARNING_EVENT, "Hash not found for attribute");
-            throw;
+            revert();
         }
         delete attributes[_hash];
         sendEvent(SIG_CHANGE_EVENT, "Attribute has been removed");
@@ -198,12 +198,12 @@ contract SmartIdentity {
         var attribute = attributes[_attributeHash];
         if (attribute.hash != _attributeHash) {
             sendEvent(ERROR_EVENT, "Attribute doesn't exist");
-            throw;
+            revert();
         }
         var endorsement = attribute.endorsements[_endorsementHash];
         if (endorsement.hash == _endorsementHash) {
             sendEvent(ERROR_EVENT, "Endorsement already exists");
-            throw;
+            revert();
         }
         endorsement.hash = _endorsementHash;
         endorsement.endorser = msg.sender;
@@ -262,7 +262,7 @@ contract SmartIdentity {
             return true;
         }
         sendEvent(SIG_CHANGE_EVENT, "Endorsement removal failed");
-        throw;
+        revert();
     }
 
     /**
