@@ -217,9 +217,18 @@ contract SmartIdentity {
      */
     function acceptEndorsement(bytes32 _attributeHash, bytes32 _endorsementHash) onlyBy(owner) returns(bool) {
         var attribute = attributes[_attributeHash];
+        if (attribute.hash != _attributeHash){
+            sendEvent(ERROR_EVENT, "Attribute doesn't exist");
+            revert();
+        }
         var endorsement = attribute.endorsements[_endorsementHash];
+        if (endorsement.hash != _endorsementHash){
+            sendEvent(ERROR_EVENT, "Endorsement does not exist");
+            revert();
+        }
         endorsement.accepted = true;
         sendEvent(SIG_CHANGE_EVENT, "Endorsement has been accepted");
+        return true;
     }
 
     /**
